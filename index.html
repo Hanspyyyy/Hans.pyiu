@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
@@ -12,7 +13,6 @@
       overflow-x: hidden;
       transition: background 2s ease;
     }
-
     .gate {
       display: flex;
       flex-direction: column;
@@ -22,11 +22,9 @@
       padding: 20px;
       animation: fadeIn 1s ease;
     }
-
     .hidden {
       display: none;
     }
-
     .question {
       margin: 20px 0;
       background-color: #add8e6;
@@ -41,7 +39,6 @@
       box-sizing: border-box;
       font-size: 18px;
     }
-
     .button-group {
       display: flex;
       justify-content: center;
@@ -49,7 +46,6 @@
       flex-wrap: wrap;
       margin-top: 10px;
     }
-
     .button {
       padding: 10px 20px;
       margin: 5px;
@@ -60,7 +56,6 @@
       cursor: pointer;
       font-size: 16px;
     }
-
     .falling-hearts {
       position: fixed;
       top: 0;
@@ -70,7 +65,6 @@
       pointer-events: none;
       z-index: 999;
     }
-
     .heart {
       position: absolute;
       width: 30px;
@@ -78,22 +72,18 @@
       background: url('https://cdn-icons-png.flaticon.com/512/833/833472.png') no-repeat center/contain;
       animation: fall 5s linear infinite;
     }
-
     @keyframes fall {
       0% { transform: translateY(-100px); opacity: 1; }
       100% { transform: translateY(100vh); opacity: 0; }
     }
-
     @keyframes fadeIn {
       from {opacity: 0; transform: translateY(20px);}
       to {opacity: 1; transform: translateY(0);}
     }
-
     @keyframes slideUp {
       0% {opacity: 0; transform: translateY(100px);}
       100% {opacity: 1; transform: translateY(0);}
     }
-
     .content {
       position: relative;
       padding: 20px;
@@ -103,7 +93,6 @@
       background: url('Begron2.png') center top / cover no-repeat;
       color: black;
     }
-
     .text-box {
       background-color: #f0f8ff;
       display: inline-block;
@@ -117,7 +106,6 @@
       white-space: normal;
       font-size: 16px;
     }
-
     .photo-grid {
       display: flex;
       flex-wrap: wrap;
@@ -125,7 +113,6 @@
       justify-content: center;
       perspective: 1000px;
     }
-
     .photo {
       position: relative;
       width: 150px;
@@ -138,23 +125,19 @@
       transition: transform 0.3s ease;
       z-index: calc(1 + var(--rotate));
     }
-
     .photo:hover {
       transform: scale(1.05) rotateZ(0deg);
       z-index: 10;
     }
-
     .photo img {
       width: 100%;
       border-radius: 8px;
     }
-
     .caption {
       font-size: 12px;
       text-align: center;
       margin-top: 4px;
     }
-
     .wa-button {
       display: inline-block;
       padding: 12px 20px;
@@ -166,18 +149,15 @@
       font-weight: bold;
       margin-top: 30px;
     }
-
     @media (max-width: 480px) {
       .question {
         font-size: 16px;
         padding: 15px;
       }
-
       .button {
         font-size: 14px;
         padding: 10px 15px;
       }
-
       .text-box {
         font-size: 15px;
       }
@@ -193,18 +173,32 @@
         <button class="button" onclick="checkGate(1, false)">Belum sih</button>
       </div>
     </div>
+    
+
     <div class="question hidden">
-      Kamu mantannya dia ya?
+      <!-- Tombol nyalain musik -->
+      <div onclick="playMusic()" style="cursor: pointer; font-size: 14px; color: blue; text-decoration: underline; margin-bottom: 10px;">
+        Klik di sini untuk meyalakan musik  🎵
+      </div>
+      Nyalain dulu ya musiknya biar asik
       <div class="button-group">
-        <button class="button" onclick="checkGate(2, true)">Iya hehe</button>
-        <button class="button" onclick="checkGate(2, false)">Bukan kok</button>
+        <button class="button" onclick="checkGate(2, true)">iya udh</button>
+        <button class="button" onclick="checkGate(2, false)">Gamau</button>
       </div>
     </div>
+        <div class="question hidden">
+      kamu mantannya dia ya?
+      <div class="button-group">
+        <button class="button" onclick="checkGate(3, true)">Iyalah wkwk</button>
+        <button class="button" onclick="checkGate(3, false)">Bukan kok</button>
+      </div>
+    </div>
+
     <div class="question hidden">
       Wih, kepo amat sih?
       <div class="button-group">
-        <button class="button" onclick="checkGate(3, true)">Iyalah wkwk</button>
-        <button class="button" onclick="checkGate(3, false)">Enggak juga sih</button>
+        <button class="button" onclick="checkGate(4, true)">Iyalah wkwk</button>
+        <button class="button" onclick="checkGate(4, false)">Enggak juga sih</button>
       </div>
     </div>
   </div>
@@ -238,6 +232,9 @@
     </div>
   </div>
 
+  <!-- Audio elemen -->
+  <audio id="bg-music" src="monolog1.mp3" loop></audio>
+
   <script>
     let currentStep = 0;
     function checkGate(step, answer) {
@@ -270,5 +267,13 @@
         heartsContainer.appendChild(heart);
       }
     }
+
+    function playMusic() {
+      const music = document.getElementById('bg-music');
+      music.play().catch(e => {
+        console.log("Musik tidak bisa diputar otomatis:", e);
+      });
+    }
   </script>
-  </body
+</body>
+</html>
